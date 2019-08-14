@@ -12,7 +12,7 @@ Kubernetes（又稱 K8s）
 
 指揮調度（Orchestration）工具
 
-![]();
+![]()
 
 ##Kubernetes 架構簡介
 
@@ -58,7 +58,7 @@ Failed to attach the network LUN (VERR_INTNET_FLT_IF_NOT_FOUND).
 
 預設沒勾
 
-![]();
+![]()
 
 參考網址 https://majing.io/questions/376
 
@@ -71,6 +71,7 @@ Failed to attach the network LUN (VERR_INTNET_FLT_IF_NOT_FOUND).
 ```
 This computer doesn’t have VT-X/AMD-v enabled. Enabling it in the BIOS is mandatory.
 ```
+
 參考網址 https://localbyflywheel.com/community/t/windows-help-im-getting-a-bios-error-about-vt-x-amd-v-during-installation/426
 
 ## 安裝完畢後-首先依照官網實作
@@ -88,12 +89,14 @@ kubectl get pod 檢查Pod是否已啟動並運行
 
 minikube service hello-minikube --url 獲取公開的服務的URL
 ```
+
 獲取網址
-![]();
+
+![]()
+
 成果圖
-![]();
 
-
+![]()
 
 額外指令
 ```
@@ -105,6 +108,85 @@ minikube stop
 
 minikube delete
 ```
+## 圖形化介面
+
+```
+minikube dashboard 
+```
+
+## 簡單範例
+
+部屬一個簡單範例應用到 Kubernetes
+
+kubectl run 可以讓我們啟動我們的 Pod
+
+–image 後面接的是 docker image 位置和版本
+
+–port 則是 container 對外的 port
+
+```
+kubectl run docker-python-flask-demo --image=docker.io/kdchang/docker-python-flask-demo:v1 --port 3000 
+
+kubectl expose deployment/docker-python-flask-demo --type="NodePort" --port 3000
+
+kubectl get services
+
+minikube service docker-python-flask-demo --url
+```
 
 
-參考網址 https://kubernetes.io/docs/setup/learning-environment/minikube/
+## 擴充應用
+
+透過以下指令查看副本數
+
+```
+kubectl get deployments
+```
+
+設定副本數量為 3：
+
+![]()
+
+```
+kubectl scale deployments/docker-python-flask-demo --replicas=3
+```
+
+我們可以看到原本的副本數量從 1 變成了 3：
+
+![]()
+
+## 更新應用
+
+若是我們想要更新 container 的版本的話可以下以下指令
+
+也就是說原本 docker image tag v1 版本改進到 v2 版本
+
+我們可以透過更新 docker image 來進行進版
+
+```
+kubectl set image deployments/docker-python-flask-demo docker-python-flask-demo=docker.io/kdchang/docker-python-flask-demo:v2
+```
+
+瀏覽器重新整理
+
+![]()
+
+若要回到 v1 版本可以透過 rollout undo 指令來進行：
+
+```
+kubectl rollout undo deployments/docker-python-flask-demo
+```
+![]()
+
+總結
+以上簡單透過 minikube 介紹 Kubernetes 的架構和部屬 cluster 和應用在本地端
+
+實際上我們可以透過雲端服務來部屬我們的 Kubernetes 應用
+
+minikube 主要是用在練習和教學使用，不建議使用在生產環境上
+
+參考網址 https://blog.techbridge.cc/2018/12/01/kubernetes101-introduction-tutorial/
+
+參考網址 https://ithelp.ithome.com.tw/articles/10193232
+
+參考網址 https://ithelp.ithome.com.tw/articles/10193232
