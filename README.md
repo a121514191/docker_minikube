@@ -60,9 +60,11 @@ Failed to attach the network LUN (VERR_INTNET_FLT_IF_NOT_FOUND).
 
 ![](https://github.com/a121514191/docker_minikube/blob/master/Reason11-300x232.png)
 
-參考網址 https://majing.io/questions/376
+參考網址:
 
-參考網址 https://blogs.msdn.microsoft.com/gaurav/2016/11/19/fix-failed-to-opencreate-the-internal-network-hostinterfacenetworking-virtualbox-host-only-ethernet-adapter-error-verr_intnet_flt_if_not_found-with-docker-quickstart-terminal/
+1. https://majing.io/questions/376
+
+2. https://blogs.msdn.microsoft.com/gaurav/2016/11/19/fix-failed-to-opencreate-the-internal-network-hostinterfacenetworking-virtualbox-host-only-ethernet-adapter-error-verr_intnet_flt_if_not_found-with-docker-quickstart-terminal/
 
 2.重裝後遇到問題(參考網址解決但失敗，於是用舊版本 <v18.09.0> 就搞定)
 
@@ -72,7 +74,8 @@ Failed to attach the network LUN (VERR_INTNET_FLT_IF_NOT_FOUND).
 This computer doesn’t have VT-X/AMD-v enabled. Enabling it in the BIOS is mandatory.
 ```
 
-參考網址 https://localbyflywheel.com/community/t/windows-help-im-getting-a-bios-error-about-vt-x-amd-v-during-installation/426
+參考網址:
+1. https://localbyflywheel.com/community/t/windows-help-im-getting-a-bios-error-about-vt-x-amd-v-during-installation/426
 
 ## 安裝完畢後-首先依照官網範例實作
 
@@ -117,7 +120,7 @@ minikube dashboard
 ```
 ![](https://github.com/a121514191/docker_minikube/blob/master/dashboard.PNG)
 
-## 簡單範例
+# 簡單範例
 
 部屬一個簡單範例應用到 Kubernetes
 
@@ -145,8 +148,6 @@ minikube service docker-python-flask-demo --url 取得url
 
 ![](https://github.com/a121514191/docker_minikube/blob/master/python-result.PNG)
 
-
-
 ## 擴充應用
 
 透過以下指令查看副本數
@@ -156,7 +157,7 @@ kubectl get deployments
 ```
 ![](https://github.com/a121514191/docker_minikube/blob/master/deployments.PNG)
 
-設定副本數量為 3：
+設定副本數量為 2：
 
 ```
 kubectl scale deployments/docker-python-flask-demo --replicas=2
@@ -196,8 +197,10 @@ kubectl rollout undo deployments/docker-python-flask-demo
 
 minikube 主要是用在練習和教學使用，不建議使用在生產環境上
 
-參考網址 https://blog.techbridge.cc/2018/12/01/kubernetes101-introduction-tutorial/
+參考網址:
 
-參考網址 https://ithelp.ithome.com.tw/articles/10193232
+1. https://blog.techbridge.cc/2018/12/01/kubernetes101-introduction-tutorial/
 
-參考網址 https://ithelp.ithome.com.tw/articles/10193232
+2. https://ithelp.ithome.com.tw/articles/10193232
+
+3. https://ithelp.ithome.com.tw/articles/10193232
