@@ -12,9 +12,9 @@ Kubernetes（又稱 K8s）
 
 指揮調度（Orchestration）工具
 
-![]()
+![](https://github.com/a121514191/docker_minikube/blob/master/kubernetes-architecture.jpg)
 
-##Kubernetes 架構簡介
+## Kubernetes 架構簡介
 
 Kubernetes cluster 主要可以分為 Master 和 Node 兩部份
 
@@ -28,21 +28,21 @@ Master 負責指揮調度 Node。在 Kubernetes 世界裡，Node 上的 Pod 是�
 
 而 Service 可以固定住我們對外服務的 IP，不會因為 Pod 關閉重啟而喪失原來的 IP 位置。
 
-## minikube
+## Minikube
 
-minikube 這個可以在本地端跑 Kubernetes 工作，來在本地端部屬我們的 Kubernetes cluster
+Minikube 這個可以在本地端跑 Kubernetes 工作，來在本地端部屬我們的 Kubernetes cluster
 
 感受一下 k8s 的應用。由於 minikube 只提供 signle-node Kubernetes Cluster
 
 本身並不支援 HA (High availability)，所以不推薦在實際應用上運行呦。
 
-## 安裝流程
+## 安裝流程(Minikube)
 
 官方安裝(Linux、MacOS、Windows)
 
-本次實作 使用windows版 搭配docker-toolbox(因為不是window10-pro)
+本次實作，使用windows版，搭配docker-toolbox(因為不是window10-pro)
 
-https://kubernetes.io/docs/tasks/tools/install-minikube/
+安裝網址 https://kubernetes.io/docs/tasks/tools/install-minikube/
 
 裝完遇到錯誤
 
@@ -58,7 +58,7 @@ Failed to attach the network LUN (VERR_INTNET_FLT_IF_NOT_FOUND).
 
 預設沒勾
 
-![]()
+![](https://github.com/a121514191/docker_minikube/blob/master/Reason11-300x232.png)
 
 參考網址 https://majing.io/questions/376
 
@@ -74,7 +74,7 @@ This computer doesn’t have VT-X/AMD-v enabled. Enabling it in the BIOS is mand
 
 參考網址 https://localbyflywheel.com/community/t/windows-help-im-getting-a-bios-error-about-vt-x-amd-v-during-installation/426
 
-## 安裝完畢後-首先依照官網實作
+## 安裝完畢後-首先依照官網範例實作
 
 啟動
 
@@ -92,27 +92,30 @@ minikube service hello-minikube --url 獲取公開的服務的URL
 
 獲取網址
 
-![]()
+![](https://github.com/a121514191/docker_minikube/blob/master/uri.PNG)
 
 成果圖
 
-![]()
+![](https://github.com/a121514191/docker_minikube/blob/master/result.PNG)
 
 額外指令
+
 ```
-kubectl delete services hello-minikube
+kubectl delete services hello-minikube 刪除服務
 
-kubectl delete deployment hello-minikube
+kubectl delete deployment hello-minikube 刪除部屬
 
-minikube stop
+minikube stop 停止minihube
 
-minikube delete
+minikube delete 刪除minikube
 ```
+
 ## 圖形化介面
 
 ```
 minikube dashboard 
 ```
+![](https://github.com/a121514191/docker_minikube/blob/master/dashboard.PNG)
 
 ## 簡單範例
 
@@ -127,12 +130,21 @@ kubectl run 可以讓我們啟動我們的 Pod
 ```
 kubectl run docker-python-flask-demo --image=docker.io/kdchang/docker-python-flask-demo:v1 --port 3000 
 
-kubectl expose deployment/docker-python-flask-demo --type="NodePort" --port 3000
+kubectl expose deployment/docker-python-flask-demo --type="NodePort" --port 3000 指定服務的類型(讓外部可以訪問)
 
-kubectl get services
+kubectl get services 取得所有服務
 
-minikube service docker-python-flask-demo --url
+minikube service docker-python-flask-demo --url 取得url
 ```
+
+獲取網址
+
+![](https://github.com/a121514191/docker_minikube/blob/master/python-url.PNG)
+
+成果圖
+
+![](https://github.com/a121514191/docker_minikube/blob/master/python-result.PNG)
+
 
 
 ## 擴充應用
@@ -142,18 +154,17 @@ minikube service docker-python-flask-demo --url
 ```
 kubectl get deployments
 ```
+![](https://github.com/a121514191/docker_minikube/blob/master/deployments.PNG)
 
 設定副本數量為 3：
 
-![]()
-
 ```
-kubectl scale deployments/docker-python-flask-demo --replicas=3
+kubectl scale deployments/docker-python-flask-demo --replicas=2
 ```
 
-我們可以看到原本的副本數量從 1 變成了 3：
+我們可以看到原本的副本數量從 1 變成了 2：
 
-![]()
+![](https://github.com/a121514191/docker_minikube/blob/master/deployments-2.PNG)
 
 ## 更新應用
 
