@@ -181,16 +181,17 @@ kubectl set image deployments/docker-python-flask-demo docker-python-flask-demo=
 
 瀏覽器重新整理
 
-![]()
+![](https://github.com/a121514191/docker_minikube/blob/master/python-result2.PNG)
 
 若要回到 v1 版本可以透過 rollout undo 指令來進行：
 
 ```
 kubectl rollout undo deployments/docker-python-flask-demo
 ```
-![]()
+![](https://github.com/a121514191/docker_minikube/blob/master/python-result.PNG)
 
-總結
+總結:
+
 以上簡單透過 minikube 介紹 Kubernetes 的架構和部屬 cluster 和應用在本地端
 
 實際上我們可以透過雲端服務來部屬我們的 Kubernetes 應用
